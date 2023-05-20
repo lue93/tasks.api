@@ -1,0 +1,49 @@
+{
+  "TableName": "tasks",
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "TaskID",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "Priority",
+      "AttributeType": "S"
+    }
+  ],
+  "KeySchema": [
+    {
+      "AttributeName": "TaskID",
+      "KeyType": "HASH"
+    },
+    {
+      "AttributeName": "Priority",
+      "KeyType": "RANGE"
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  },
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "IndexTask",
+      "KeySchema": [
+        {
+          "AttributeName": "TaskID",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "Priority",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+      }
+    }
+  ]
+}
